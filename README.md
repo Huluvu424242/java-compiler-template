@@ -18,4 +18,6 @@ Template für antlr basierte Compiler in Java
 3. maven wrapper erstellen:
    ```
    mvn wrapper:wrapper -Dtype=source
+   oder
+   mvn wrapper:wrapper -Dtype=script
    ```
