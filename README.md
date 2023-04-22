@@ -21,3 +21,8 @@ Template für antlr basierte Compiler in Java
    oder
    mvn wrapper:wrapper -Dtype=script
    ```
+   
+
+## Grammatik erstellen
+
+* https://tomassetti.me/antlr-mega-tutorial/
