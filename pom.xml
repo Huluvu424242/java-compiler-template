@@ -1,0 +1,7 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.huluvu424242</groupId>
+    <artifactId>java-compiler-template</artifactId>
+    <version>1</version>
+</project>
