@@ -17,7 +17,8 @@ public class Sql92DDLParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, CreateTableKey=5, Identifier=6;
+		T__0=1, T__1=2, T__2=3, T__3=4, CreateTableKey=5, Identifier=6, CREATE=7, 
+		TABLE=8, WS=9;
 	public static final int
 		RULE_ddlScript = 0, RULE_createTable = 1, RULE_createTableDefinition = 2, 
 		RULE_createTableKeywords = 3, RULE_tableElement = 4, RULE_columnElement = 5, 
@@ -28,10 +29,12 @@ public class Sql92DDLParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'('", "')'", "','", "'todo table constraint'"
+		null, "'('", "')'", "','", "'todo table constraint'", null, null, "'create'", 
+		"'table'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, "CreateTableKey", "Identifier"
+		null, null, null, null, null, "CreateTableKey", "Identifier", "CREATE", 
+		"TABLE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -415,7 +418,7 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\b.\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13.\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\6\2\22\n\2\r\2\16\2\23"+
 		"\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4\37\n\4\f\4\16\4\"\13\4\3\5\3"+
 		"\5\3\6\3\6\5\6(\n\6\3\7\3\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\2)\2"+

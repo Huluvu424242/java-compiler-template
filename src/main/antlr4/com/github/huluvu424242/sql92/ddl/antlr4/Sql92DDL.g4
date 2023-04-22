@@ -42,16 +42,19 @@ tableConstraint
 
 // Lexer
 
-
-
-fragment CREATE: 'CREATE' | 'create';
-fragment TABLE: 'TABLE' | 'table';
-
-
 CreateTableKey
     : CREATE TABLE
     ;
 
 Identifier
-	:	[a-zA-Z0-9$_]+
+	:	LETTER+
 	;
+
+fragment LETTER: [a-zA-Z0-9$_];
+CREATE: 'create';
+TABLE:  'table';
+
+
+
+WS  :  [ \t\r\n\u000C]+ -> channel(HIDDEN)
+    ;
