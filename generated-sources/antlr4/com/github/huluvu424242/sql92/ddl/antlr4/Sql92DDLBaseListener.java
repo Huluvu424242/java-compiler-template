@@ -52,6 +52,18 @@ public class Sql92DDLBaseListener implements Sql92DDLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDdl_statement(Sql92DDLParser.Ddl_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDdl_statement(Sql92DDLParser.Ddl_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCreate_table(Sql92DDLParser.Create_tableContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +71,66 @@ public class Sql92DDLBaseListener implements Sql92DDLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCreate_table(Sql92DDLParser.Create_tableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCreate_table_definition(Sql92DDLParser.Create_table_definitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCreate_table_definition(Sql92DDLParser.Create_table_definitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTable_element(Sql92DDLParser.Table_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTable_element(Sql92DDLParser.Table_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColumn_element(Sql92DDLParser.Column_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_element(Sql92DDLParser.Column_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColumn_datatype(Sql92DDLParser.Column_datatypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_datatype(Sql92DDLParser.Column_datatypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColumn_constraint(Sql92DDLParser.Column_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_constraint(Sql92DDLParser.Column_constraintContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

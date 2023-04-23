@@ -70,11 +70,15 @@ table_element
     ;
 
 column_element
-    : IDENTIFIER column_datatype
+    : IDENTIFIER column_datatype column_constraint?
     ;
 
 column_datatype
     : IDENTIFIER ( '(' NUMBER ')' )?
+    ;
+
+column_constraint
+    : KW_NOT? KW_NULL
     ;
 
 //tableConstraint

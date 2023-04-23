@@ -17,16 +17,16 @@ class DDLScriptListenerTest {
     protected final ParseTreeWalker walker = new ParseTreeWalker();
 
     @Test
-    void createOneTable()  {
+    void createOneTable() {
 
-        final String ddlScriptContent = "create table Mitarbeiter ( id int, vorname varchar, name varchar(20) ) ;";
-//                       """
-//                       create table Mitarbeiter (
-//                           id int not null,
-//                           vorname varchar(200),
-//                           name varchar(2300)
-//                       );
-//                """;
+        final String ddlScriptContent =
+                """
+                        create table Mitarbeiter (
+                            id int not null,
+                            vorname varchar(200),
+                            name varchar(2300)
+                        );
+                         """;
         //
         final Sql92DDLLexer ddlLexer = new Sql92DDLLexer(CharStreams.fromString(ddlScriptContent));
         final CommonTokenStream tokens = new CommonTokenStream(ddlLexer);
