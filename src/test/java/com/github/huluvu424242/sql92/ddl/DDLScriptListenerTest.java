@@ -22,7 +22,7 @@ class DDLScriptListenerTest {
         final String ddlScriptContent =
                 """
                         create table Mitarbeiter (
-                            id int not null,
+                            id int not null primary key,
                             vorname varchar(200),
                             name varchar(2300)
                         );

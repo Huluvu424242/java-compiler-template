@@ -70,7 +70,7 @@ table_element
     ;
 
 column_element
-    : IDENTIFIER column_datatype column_constraint?
+    : IDENTIFIER column_datatype ( column_constraint )*
     ;
 
 column_datatype
@@ -79,6 +79,7 @@ column_datatype
 
 column_constraint
     : KW_NOT? KW_NULL
+    | KW_PRIMARY KW_KEY
     ;
 
 //tableConstraint
@@ -93,6 +94,8 @@ KW_CREATE   : C R E A T E ;
 KW_TABLE    : T A B L E ;
 KW_NOT      : N O T ;
 KW_NULL     : N U L L ;
+KW_PRIMARY  : P R I M A R Y ;
+KW_KEY      : K E Y ;
 
 NUMBER      : DIGIT+ ;
 DIGIT       : [0-9] ;
