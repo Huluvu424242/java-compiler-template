@@ -1,5 +1,5 @@
-// Generated from com\github\huluvu424242\sql92\ddl\antlr4\Sql92DDL.g4 by ANTLR 4.7.1
-package com.github.huluvu424242.sql92.ddl.antlr4;
+// Generated from com\github\huluvu424242\sql\ddl\antlr4\SqlDDL.g4 by ANTLR 4.7.1
+package com.github.huluvu424242.sql.ddl.antlr4;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class Sql92DDLParser extends Parser {
+public class SqlDDLParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -69,7 +69,7 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Sql92DDL.g4"; }
+	public String getGrammarFileName() { return "SqlDDL.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -80,12 +80,12 @@ public class Sql92DDLParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public Sql92DDLParser(TokenStream input) {
+	public SqlDDLParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class ParseContext extends ParserRuleContext {
-		public TerminalNode EOF() { return getToken(Sql92DDLParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(SqlDDLParser.EOF, 0); }
 		public List<Ddl_statementsContext> ddl_statements() {
 			return getRuleContexts(Ddl_statementsContext.class);
 		}
@@ -104,11 +104,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_parse; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterParse(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterParse(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitParse(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitParse(this);
 		}
 	}
 
@@ -165,18 +165,18 @@ public class Sql92DDLParser extends Parser {
 
 	public static class ErrorContext extends ParserRuleContext {
 		public Token UNEXPECTED_CHAR;
-		public TerminalNode UNEXPECTED_CHAR() { return getToken(Sql92DDLParser.UNEXPECTED_CHAR, 0); }
+		public TerminalNode UNEXPECTED_CHAR() { return getToken(SqlDDLParser.UNEXPECTED_CHAR, 0); }
 		public ErrorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_error; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterError(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterError(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitError(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitError(this);
 		}
 	}
 
@@ -220,11 +220,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_ddl_statements; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterDdl_statements(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterDdl_statements(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitDdl_statements(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitDdl_statements(this);
 		}
 	}
 
@@ -327,11 +327,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_ddl_statement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterDdl_statement(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterDdl_statement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitDdl_statement(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitDdl_statement(this);
 		}
 	}
 
@@ -357,9 +357,9 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static class Create_tableContext extends ParserRuleContext {
-		public TerminalNode KW_CREATE() { return getToken(Sql92DDLParser.KW_CREATE, 0); }
-		public TerminalNode KW_TABLE() { return getToken(Sql92DDLParser.KW_TABLE, 0); }
-		public TerminalNode IDENTIFIER() { return getToken(Sql92DDLParser.IDENTIFIER, 0); }
+		public TerminalNode KW_CREATE() { return getToken(SqlDDLParser.KW_CREATE, 0); }
+		public TerminalNode KW_TABLE() { return getToken(SqlDDLParser.KW_TABLE, 0); }
+		public TerminalNode IDENTIFIER() { return getToken(SqlDDLParser.IDENTIFIER, 0); }
 		public Create_table_definitionContext create_table_definition() {
 			return getRuleContext(Create_table_definitionContext.class,0);
 		}
@@ -369,11 +369,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_create_table; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterCreate_table(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterCreate_table(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitCreate_table(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitCreate_table(this);
 		}
 	}
 
@@ -421,11 +421,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_create_table_definition; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterCreate_table_definition(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterCreate_table_definition(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitCreate_table_definition(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitCreate_table_definition(this);
 		}
 	}
 
@@ -477,11 +477,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_table_element; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterTable_element(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterTable_element(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitTable_element(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitTable_element(this);
 		}
 	}
 
@@ -507,7 +507,7 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static class Column_elementContext extends ParserRuleContext {
-		public TerminalNode IDENTIFIER() { return getToken(Sql92DDLParser.IDENTIFIER, 0); }
+		public TerminalNode IDENTIFIER() { return getToken(SqlDDLParser.IDENTIFIER, 0); }
 		public Column_datatypeContext column_datatype() {
 			return getRuleContext(Column_datatypeContext.class,0);
 		}
@@ -523,11 +523,11 @@ public class Sql92DDLParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_column_element; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterColumn_element(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterColumn_element(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitColumn_element(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_element(this);
 		}
 	}
 
@@ -570,19 +570,19 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static class Column_datatypeContext extends ParserRuleContext {
-		public TerminalNode IDENTIFIER() { return getToken(Sql92DDLParser.IDENTIFIER, 0); }
-		public TerminalNode NUMBER() { return getToken(Sql92DDLParser.NUMBER, 0); }
+		public TerminalNode IDENTIFIER() { return getToken(SqlDDLParser.IDENTIFIER, 0); }
+		public TerminalNode NUMBER() { return getToken(SqlDDLParser.NUMBER, 0); }
 		public Column_datatypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_column_datatype; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterColumn_datatype(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterColumn_datatype(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitColumn_datatype(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_datatype(this);
 		}
 	}
 
@@ -623,21 +623,21 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static class Column_constraintContext extends ParserRuleContext {
-		public TerminalNode KW_NULL() { return getToken(Sql92DDLParser.KW_NULL, 0); }
-		public TerminalNode KW_NOT() { return getToken(Sql92DDLParser.KW_NOT, 0); }
-		public TerminalNode KW_PRIMARY() { return getToken(Sql92DDLParser.KW_PRIMARY, 0); }
-		public TerminalNode KW_KEY() { return getToken(Sql92DDLParser.KW_KEY, 0); }
+		public TerminalNode KW_NULL() { return getToken(SqlDDLParser.KW_NULL, 0); }
+		public TerminalNode KW_NOT() { return getToken(SqlDDLParser.KW_NOT, 0); }
+		public TerminalNode KW_PRIMARY() { return getToken(SqlDDLParser.KW_PRIMARY, 0); }
+		public TerminalNode KW_KEY() { return getToken(SqlDDLParser.KW_KEY, 0); }
 		public Column_constraintContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_column_constraint; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).enterColumn_constraint(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).enterColumn_constraint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Sql92DDLListener ) ((Sql92DDLListener)listener).exitColumn_constraint(this);
+			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_constraint(this);
 		}
 	}
 

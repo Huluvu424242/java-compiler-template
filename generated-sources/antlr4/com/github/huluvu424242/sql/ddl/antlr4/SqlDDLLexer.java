@@ -1,5 +1,5 @@
-// Generated from com\github\huluvu424242\sql92\ddl\antlr4\Sql92DDL.g4 by ANTLR 4.7.1
-package com.github.huluvu424242.sql92.ddl.antlr4;
+// Generated from com\github\huluvu424242\sql\ddl\antlr4\SqlDDL.g4 by ANTLR 4.7.1
+package com.github.huluvu424242.sql.ddl.antlr4;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class Sql92DDLLexer extends Lexer {
+public class SqlDDLLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -75,13 +75,13 @@ public class Sql92DDLLexer extends Lexer {
 	}
 
 
-	public Sql92DDLLexer(CharStream input) {
+	public SqlDDLLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Sql92DDL.g4"; }
+	public String getGrammarFileName() { return "SqlDDL.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

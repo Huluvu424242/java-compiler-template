@@ -1,8 +1,8 @@
-package com.github.huluvu424242.sql92.ddl;
+package com.github.huluvu424242.sql.ddl;
 
 
-import com.github.huluvu424242.sql92.ddl.antlr4.Sql92DDLBaseListener;
-import com.github.huluvu424242.sql92.ddl.antlr4.Sql92DDLParser;
+import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLBaseListener;
+import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLParser;
 import org.antlr.v4.runtime.tree.ErrorNode;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DDLScriptListener extends Sql92DDLBaseListener {
+public class DDLScriptListener extends SqlDDLBaseListener {
 
     final Logger logger = Logger.getLogger(DDLScriptListener.class.getName());
 
@@ -21,7 +21,7 @@ public class DDLScriptListener extends Sql92DDLBaseListener {
     }
 
     @Override
-    public void exitCreate_table(Sql92DDLParser.Create_tableContext ctx) {
+    public void exitCreate_table(SqlDDLParser.Create_tableContext ctx) {
         final String tableName = ctx.IDENTIFIER().getText();
         final TableDefinition tableDefinition = new TableDefinition();
         ddlObjectMap.put(tableName, tableDefinition);

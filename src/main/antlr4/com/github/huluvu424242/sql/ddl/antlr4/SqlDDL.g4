@@ -24,7 +24,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  *
- * Project      : java-compiler-template; an ANTLR4 grammar for Sql92DDL
+ * Project      : java-compiler-template; an ANTLR4 grammar for SqlDDL
  *                https://github.com/huluvu424242/java-compiler-template
  * Developed by : Huluvu424242, huluvu424242@gmail.com
  *
@@ -33,7 +33,7 @@
  */
 
 
-grammar Sql92DDL;
+grammar SqlDDL;
 
 
 // Parser

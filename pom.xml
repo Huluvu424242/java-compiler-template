@@ -7,7 +7,7 @@
 
     <properties>
         <!-- fuer wiederholbare builds mit versioniert -->
-        <antlr4.outputdir>${basedir}/generated-sources/antlr4</antlr4.outputdir>
+        <antlr4.outputdir>generated-sources/antlr4</antlr4.outputdir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.version>3.9.1</maven.version>
@@ -144,7 +144,9 @@
                 <executions>
                     <execution>
                         <id>clean-site</id>
-                        <phase>pre-site</phase>
+                        <phase>
+                            pre-clean
+                        </phase>
                         <goals>
                             <goal>clean</goal>
                         </goals>

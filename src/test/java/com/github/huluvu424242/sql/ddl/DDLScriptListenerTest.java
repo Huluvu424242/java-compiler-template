@@ -1,7 +1,7 @@
-package com.github.huluvu424242.sql92.ddl;
+package com.github.huluvu424242.sql.ddl;
 
-import com.github.huluvu424242.sql92.ddl.antlr4.Sql92DDLLexer;
-import com.github.huluvu424242.sql92.ddl.antlr4.Sql92DDLParser;
+import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLLexer;
+import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -28,9 +28,9 @@ class DDLScriptListenerTest {
                         );
                          """;
         //
-        final Sql92DDLLexer ddlLexer = new Sql92DDLLexer(CharStreams.fromString(ddlScriptContent));
+        final SqlDDLLexer ddlLexer = new SqlDDLLexer(CharStreams.fromString(ddlScriptContent));
         final CommonTokenStream tokens = new CommonTokenStream(ddlLexer);
-        final Sql92DDLParser parser = new Sql92DDLParser(tokens);
+        final SqlDDLParser parser = new SqlDDLParser(tokens);
         final ParseTree tree = parser.parse();
 
         // instantiate the lexer, the parser, and the walker
