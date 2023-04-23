@@ -18,7 +18,7 @@ public class Sql92DDLParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, KW_CREATE=5, KW_TABLE=6, KW_NOT=7, KW_NULL=8, 
-		NUMBER=9, DIGIT=10, IDENTIFIER=11, WS=12, UNEXPECTED_CHAR=13;
+		KW_PRIMARY=9, KW_KEY=10, NUMBER=11, DIGIT=12, IDENTIFIER=13, WS=14, UNEXPECTED_CHAR=15;
 	public static final int
 		RULE_parse = 0, RULE_error = 1, RULE_ddl_statements = 2, RULE_ddl_statement = 3, 
 		RULE_create_table = 4, RULE_create_table_definition = 5, RULE_table_element = 6, 
@@ -33,7 +33,7 @@ public class Sql92DDLParser extends Parser {
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, "KW_CREATE", "KW_TABLE", "KW_NOT", "KW_NULL", 
-		"NUMBER", "DIGIT", "IDENTIFIER", "WS", "UNEXPECTED_CHAR"
+		"KW_PRIMARY", "KW_KEY", "NUMBER", "DIGIT", "IDENTIFIER", "WS", "UNEXPECTED_CHAR"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -511,8 +511,11 @@ public class Sql92DDLParser extends Parser {
 		public Column_datatypeContext column_datatype() {
 			return getRuleContext(Column_datatypeContext.class,0);
 		}
-		public Column_constraintContext column_constraint() {
-			return getRuleContext(Column_constraintContext.class,0);
+		public List<Column_constraintContext> column_constraint() {
+			return getRuleContexts(Column_constraintContext.class);
+		}
+		public Column_constraintContext column_constraint(int i) {
+			return getRuleContext(Column_constraintContext.class,i);
 		}
 		public Column_elementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -539,16 +542,20 @@ public class Sql92DDLParser extends Parser {
 			match(IDENTIFIER);
 			setState(76);
 			column_datatype();
-			setState(78);
+			setState(80);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==KW_NOT || _la==KW_NULL) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KW_NOT) | (1L << KW_NULL) | (1L << KW_PRIMARY))) != 0)) {
+				{
 				{
 				setState(77);
 				column_constraint();
 				}
+				}
+				setState(82);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
 			}
-
 			}
 		}
 		catch (RecognitionException re) {
@@ -586,18 +593,18 @@ public class Sql92DDLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(83);
 			match(IDENTIFIER);
-			setState(84);
+			setState(87);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__1) {
 				{
-				setState(81);
+				setState(84);
 				match(T__1);
-				setState(82);
+				setState(85);
 				match(NUMBER);
-				setState(83);
+				setState(86);
 				match(T__2);
 				}
 			}
@@ -618,6 +625,8 @@ public class Sql92DDLParser extends Parser {
 	public static class Column_constraintContext extends ParserRuleContext {
 		public TerminalNode KW_NULL() { return getToken(Sql92DDLParser.KW_NULL, 0); }
 		public TerminalNode KW_NOT() { return getToken(Sql92DDLParser.KW_NOT, 0); }
+		public TerminalNode KW_PRIMARY() { return getToken(Sql92DDLParser.KW_PRIMARY, 0); }
+		public TerminalNode KW_KEY() { return getToken(Sql92DDLParser.KW_KEY, 0); }
 		public Column_constraintContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -637,20 +646,38 @@ public class Sql92DDLParser extends Parser {
 		enterRule(_localctx, 18, RULE_column_constraint);
 		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(87);
+			setState(95);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==KW_NOT) {
+			switch (_input.LA(1)) {
+			case KW_NOT:
+			case KW_NULL:
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(86);
-				match(KW_NOT);
+				setState(90);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==KW_NOT) {
+					{
+					setState(89);
+					match(KW_NOT);
+					}
 				}
-			}
 
-			setState(89);
-			match(KW_NULL);
+				setState(92);
+				match(KW_NULL);
+				}
+				break;
+			case KW_PRIMARY:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(93);
+				match(KW_PRIMARY);
+				setState(94);
+				match(KW_KEY);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -665,29 +692,30 @@ public class Sql92DDLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17^\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21d\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
 		"\2\3\2\7\2\31\n\2\f\2\16\2\34\13\2\3\2\3\2\3\3\3\3\3\3\3\4\7\4$\n\4\f"+
 		"\4\16\4\'\13\4\3\4\3\4\6\4+\n\4\r\4\16\4,\3\4\7\4\60\n\4\f\4\16\4\63\13"+
 		"\4\3\4\7\4\66\n\4\f\4\16\49\13\4\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
-		"\7\3\7\3\7\7\7G\n\7\f\7\16\7J\13\7\3\b\3\b\3\t\3\t\3\t\5\tQ\n\t\3\n\3"+
-		"\n\3\n\3\n\5\nW\n\n\3\13\5\13Z\n\13\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16"+
-		"\20\22\24\2\2\2]\2\32\3\2\2\2\4\37\3\2\2\2\6%\3\2\2\2\b:\3\2\2\2\n<\3"+
-		"\2\2\2\fC\3\2\2\2\16K\3\2\2\2\20M\3\2\2\2\22R\3\2\2\2\24Y\3\2\2\2\26\31"+
-		"\5\6\4\2\27\31\5\4\3\2\30\26\3\2\2\2\30\27\3\2\2\2\31\34\3\2\2\2\32\30"+
-		"\3\2\2\2\32\33\3\2\2\2\33\35\3\2\2\2\34\32\3\2\2\2\35\36\7\2\2\3\36\3"+
-		"\3\2\2\2\37 \7\17\2\2 !\b\3\1\2!\5\3\2\2\2\"$\7\3\2\2#\"\3\2\2\2$\'\3"+
-		"\2\2\2%#\3\2\2\2%&\3\2\2\2&(\3\2\2\2\'%\3\2\2\2(\61\5\b\5\2)+\7\3\2\2"+
-		"*)\3\2\2\2+,\3\2\2\2,*\3\2\2\2,-\3\2\2\2-.\3\2\2\2.\60\5\6\4\2/*\3\2\2"+
-		"\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\67\3\2\2\2\63\61\3\2\2\2"+
-		"\64\66\7\3\2\2\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28\7"+
-		"\3\2\2\29\67\3\2\2\2:;\5\n\6\2;\t\3\2\2\2<=\7\7\2\2=>\7\b\2\2>?\7\r\2"+
-		"\2?@\7\4\2\2@A\5\f\7\2AB\7\5\2\2B\13\3\2\2\2CH\5\16\b\2DE\7\6\2\2EG\5"+
-		"\16\b\2FD\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2\2I\r\3\2\2\2JH\3\2\2\2K"+
-		"L\5\20\t\2L\17\3\2\2\2MN\7\r\2\2NP\5\22\n\2OQ\5\24\13\2PO\3\2\2\2PQ\3"+
-		"\2\2\2Q\21\3\2\2\2RV\7\r\2\2ST\7\4\2\2TU\7\13\2\2UW\7\5\2\2VS\3\2\2\2"+
-		"VW\3\2\2\2W\23\3\2\2\2XZ\7\t\2\2YX\3\2\2\2YZ\3\2\2\2Z[\3\2\2\2[\\\7\n"+
-		"\2\2\\\25\3\2\2\2\f\30\32%,\61\67HPVY";
+		"\7\3\7\3\7\7\7G\n\7\f\7\16\7J\13\7\3\b\3\b\3\t\3\t\3\t\7\tQ\n\t\f\t\16"+
+		"\tT\13\t\3\n\3\n\3\n\3\n\5\nZ\n\n\3\13\5\13]\n\13\3\13\3\13\3\13\5\13"+
+		"b\n\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\2d\2\32\3\2\2\2\4\37\3\2"+
+		"\2\2\6%\3\2\2\2\b:\3\2\2\2\n<\3\2\2\2\fC\3\2\2\2\16K\3\2\2\2\20M\3\2\2"+
+		"\2\22U\3\2\2\2\24a\3\2\2\2\26\31\5\6\4\2\27\31\5\4\3\2\30\26\3\2\2\2\30"+
+		"\27\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2\33\35\3\2\2\2\34"+
+		"\32\3\2\2\2\35\36\7\2\2\3\36\3\3\2\2\2\37 \7\21\2\2 !\b\3\1\2!\5\3\2\2"+
+		"\2\"$\7\3\2\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2\2&(\3\2\2\2\'%\3"+
+		"\2\2\2(\61\5\b\5\2)+\7\3\2\2*)\3\2\2\2+,\3\2\2\2,*\3\2\2\2,-\3\2\2\2-"+
+		".\3\2\2\2.\60\5\6\4\2/*\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2"+
+		"\2\62\67\3\2\2\2\63\61\3\2\2\2\64\66\7\3\2\2\65\64\3\2\2\2\669\3\2\2\2"+
+		"\67\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29\67\3\2\2\2:;\5\n\6\2;\t\3\2\2\2"+
+		"<=\7\7\2\2=>\7\b\2\2>?\7\17\2\2?@\7\4\2\2@A\5\f\7\2AB\7\5\2\2B\13\3\2"+
+		"\2\2CH\5\16\b\2DE\7\6\2\2EG\5\16\b\2FD\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3"+
+		"\2\2\2I\r\3\2\2\2JH\3\2\2\2KL\5\20\t\2L\17\3\2\2\2MN\7\17\2\2NR\5\22\n"+
+		"\2OQ\5\24\13\2PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2S\21\3\2\2\2TR\3"+
+		"\2\2\2UY\7\17\2\2VW\7\4\2\2WX\7\r\2\2XZ\7\5\2\2YV\3\2\2\2YZ\3\2\2\2Z\23"+
+		"\3\2\2\2[]\7\t\2\2\\[\3\2\2\2\\]\3\2\2\2]^\3\2\2\2^b\7\n\2\2_`\7\13\2"+
+		"\2`b\7\f\2\2a\\\3\2\2\2a_\3\2\2\2b\25\3\2\2\2\r\30\32%,\61\67HRY\\a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
