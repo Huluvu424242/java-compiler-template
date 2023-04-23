@@ -33,6 +33,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -54,8 +55,8 @@ public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
                     final SqlDDLParser.Column_elementContext column = tableElement.column_element();
                     final String columnName = column.IDENTIFIER().getText();
                     final String columnDataType = column.column_datatype().getText();
-                    final boolean isNullable = !column.column_constraint().contains("notnull");
-                    final boolean isPrimary = !column.column_constraint().contains("primarykey");
+                    final boolean isNullable = !meetsCondition(column.column_constraint(), "notnull");
+                    final boolean isPrimary = meetsCondition(column.column_constraint(), "primarykey");
                     final DDLColumnDefinition columnDefinition = DDLColumnDefinition.builder()
                             .columnName(columnName)
                             .dataType(columnDataType)
@@ -73,5 +74,9 @@ public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
         log.info(">" + tableDefinition.toString() + "<");
 
         return visitChildren(context);
+    }
+
+    protected boolean meetsCondition(final List<SqlDDLParser.Column_constraintContext> colContents, final String anyMatchString) {
+        return colContents.stream().anyMatch((SqlDDLParser.Column_constraintContext ctx) -> ctx.getText().equals(anyMatchString));
     }
 }
