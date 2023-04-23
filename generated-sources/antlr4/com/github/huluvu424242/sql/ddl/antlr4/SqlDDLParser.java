@@ -110,6 +110,11 @@ public class SqlDDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitParse(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitParse(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParseContext parse() throws RecognitionException {
@@ -178,6 +183,11 @@ public class SqlDDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitError(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitError(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ErrorContext error() throws RecognitionException {
@@ -225,6 +235,11 @@ public class SqlDDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitDdl_statements(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitDdl_statements(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -333,6 +348,11 @@ public class SqlDDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitDdl_statement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitDdl_statement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Ddl_statementContext ddl_statement() throws RecognitionException {
@@ -374,6 +394,11 @@ public class SqlDDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitCreate_table(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitCreate_table(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -426,6 +451,11 @@ public class SqlDDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitCreate_table_definition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitCreate_table_definition(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -483,6 +513,11 @@ public class SqlDDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitTable_element(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitTable_element(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Table_elementContext table_element() throws RecognitionException {
@@ -528,6 +563,11 @@ public class SqlDDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_element(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitColumn_element(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -584,6 +624,11 @@ public class SqlDDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_datatype(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitColumn_datatype(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Column_datatypeContext column_datatype() throws RecognitionException {
@@ -638,6 +683,11 @@ public class SqlDDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlDDLListener ) ((SqlDDLListener)listener).exitColumn_constraint(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlDDLVisitor ) return ((SqlDDLVisitor<? extends T>)visitor).visitColumn_constraint(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

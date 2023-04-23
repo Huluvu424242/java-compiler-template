@@ -169,6 +169,7 @@
                     <outputDirectory>
                         ${antlr4.outputdir}
                     </outputDirectory>
+                    <visitor>true</visitor>
                 </configuration>
                 <executions>
                     <execution>
