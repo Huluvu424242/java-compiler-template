@@ -42,6 +42,5 @@ jobs:
     strategy:
           matrix:
             java-version:
-            - 11
             - 17
             - 19
