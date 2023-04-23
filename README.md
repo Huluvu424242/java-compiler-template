@@ -31,3 +31,4 @@ Template für antlr basierte Compiler in Java
 
 * Use SQL Fiddle to create valid ddl scripts http://sqlfiddle.com/
 * Compile these scripts with this app to plantuml diagrams
+* Check the result diagrams against https://plantuml.com/de/ie-diagram with plantuml online validator https://www.plantuml.com/plantuml/uml/
