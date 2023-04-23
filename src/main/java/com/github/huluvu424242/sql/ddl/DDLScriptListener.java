@@ -23,7 +23,7 @@ public class DDLScriptListener extends SqlDDLBaseListener {
     @Override
     public void exitCreate_table(SqlDDLParser.Create_tableContext ctx) {
         final String tableName = ctx.IDENTIFIER().getText();
-        final TableDefinition tableDefinition = new TableDefinition();
+        final TableDefinition tableDefinition = TableDefinition.builder().build();
         ddlObjectMap.put(tableName, tableDefinition);
     }
 
