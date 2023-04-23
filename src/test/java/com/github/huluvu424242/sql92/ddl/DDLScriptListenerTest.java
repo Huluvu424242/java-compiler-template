@@ -19,7 +19,7 @@ class DDLScriptListenerTest {
     @Test
     void createOneTable()  {
 
-        final String ddlScriptContent = "create table Mitarbeiter ;";
+        final String ddlScriptContent = "create table Mitarbeiter ( id int, vorname varchar, name varchar(20) ) ;";
 //                       """
 //                       create table Mitarbeiter (
 //                           id int not null,

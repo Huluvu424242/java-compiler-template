@@ -58,20 +58,24 @@ ddl_statement
     ;
 
 create_table
-    :  K_CREATE K_TABLE IDENTIFIER
+    :  KW_CREATE KW_TABLE IDENTIFIER '(' create_table_definition ')'
     ;
 
-//createTableDefinition
-//    : tableElement ( ',' tableElement )*
-//    ;
+create_table_definition
+    : table_element ( ',' table_element )*
+    ;
 
-//tableElement
-//    :   columnElement //| tableConstraint
-//    ;
+table_element
+    :   column_element //| tableConstraint
+    ;
 
-//columnElement
-//    : Identifier //columnType
-//    ;
+column_element
+    : IDENTIFIER column_datatype
+    ;
+
+column_datatype
+    : IDENTIFIER ( '(' NUMBER ')' )?
+    ;
 
 //tableConstraint
 //    : 'todo table constraint'
@@ -81,9 +85,13 @@ create_table
 // Lexer
 
 
-K_CREATE : C R E A T E ;
-K_TABLE : T A B L E ;
+KW_CREATE   : C R E A T E ;
+KW_TABLE    : T A B L E ;
+KW_NOT      : N O T ;
+KW_NULL     : N U L L ;
 
+NUMBER      : DIGIT+ ;
+DIGIT       : [0-9] ;
 
 IDENTIFIER
 	: [a-zA-Z0-9$_]+
