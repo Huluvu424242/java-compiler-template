@@ -12,10 +12,10 @@ package com.github.huluvu424242.sql.ddl;
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -62,7 +62,7 @@ class DDLScriptListenerTest {
         // instantiate the lexer, the parser, and the walker
         final DDLScriptListener listener = new DDLScriptListener();
         walker.walk(listener, tree);
-        final Map<String, TableDefinition> ddlObjects = listener.getDDLObjectMap();
+        final Map<String, DDLTableDefinition> ddlObjects = listener.getDDLObjectMap();
 
         assertEquals(1, ddlObjects.size());
         assertEquals("Mitarbeiter", ddlObjects.keySet().stream().findFirst().orElseThrow(() -> new RuntimeException("Falsch")));

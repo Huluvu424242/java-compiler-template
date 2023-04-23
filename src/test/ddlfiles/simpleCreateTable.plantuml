@@ -1,0 +1,17 @@
+
+@startuml
+
+entity Abteilung{
+   description varchar(2300) <<PK>>
+   id int <<PK>>
+   dep_name varchar(200) <<PK>>
+
+}
+entity Mitarbeiter{
+   dep_id int <<PK>>
+   vorname varchar(200) <<PK>>
+   name varchar(2300) <<PK>>
+   id int <<PK>>
+
+}
+@enduml

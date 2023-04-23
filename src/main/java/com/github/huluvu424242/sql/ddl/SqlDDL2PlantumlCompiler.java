@@ -1,14 +1,18 @@
 package com.github.huluvu424242.sql.ddl;
 
+import com.github.huluvu424242.plantuml.PlantumlDiagram;
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLLexer;
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLParser;
 import lombok.Builder;
 import lombok.SneakyThrows;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /*-
  * #%L
@@ -51,6 +55,7 @@ public class SqlDDL2PlantumlCompiler implements Runnable {
 
     @SneakyThrows
     @Override
+    @SuppressWarnings({"java:S4042", "java:S899"})
     public void run() {
         if (targetPlantumlFile.exists()) {
             targetPlantumlFile.delete();
@@ -65,6 +70,9 @@ public class SqlDDL2PlantumlCompiler implements Runnable {
         SqlDDLParser.ParseContext fileContext = markupParser.parse();
         final DDLScriptVisitor visitor = new DDLScriptVisitor();
         visitor.visit(fileContext);
+        final Map<String, DDLTableDefinition> schemaDefinition = visitor.getSchemaDefinition();
+        final String plantumlContent = PlantumlDiagram.of(schemaDefinition);
+        FileUtils.writeStringToFile(targetPlantumlFile, plantumlContent, StandardCharsets.UTF_8);
     }
 
     protected void checkPreConditions() throws SqlDDL2PlantumlCompilerException {

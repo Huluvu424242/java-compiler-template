@@ -38,16 +38,16 @@ import java.util.Map;
 @Slf4j
 public class DDLScriptListener extends SqlDDLBaseListener {
 
-    final Map<String, TableDefinition> ddlObjectMap = new HashMap<>();
+    final Map<String, DDLTableDefinition> ddlObjectMap = new HashMap<>();
 
-    public Map<String, TableDefinition> getDDLObjectMap() {
+    public Map<String, DDLTableDefinition> getDDLObjectMap() {
         return this.ddlObjectMap;
     }
 
     @Override
     public void exitCreate_table(SqlDDLParser.Create_tableContext ctx) {
         final String tableName = ctx.IDENTIFIER().getText();
-        final TableDefinition tableDefinition = TableDefinition.builder().build();
+        final DDLTableDefinition tableDefinition = DDLTableDefinition.builder().build();
         ddlObjectMap.put(tableName, tableDefinition);
     }
 

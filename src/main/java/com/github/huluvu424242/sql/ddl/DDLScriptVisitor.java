@@ -29,22 +29,26 @@ package com.github.huluvu424242.sql.ddl;
 
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLBaseVisitor;
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLParser;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@Getter
 public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
+
+    protected final Map<String, DDLTableDefinition> schemaDefinition = new HashMap<>();
 
     @Override
     public String visitCreate_table(SqlDDLParser.Create_tableContext context) {
         final String tableName = context.IDENTIFIER().getText();
-        final TableDefinition.TableDefinitionBuilder tableDefinitionBuilder = TableDefinition
+        final DDLTableDefinition.DDLTableDefinitionBuilder tableDefinitionBuilder = DDLTableDefinition
                 .builder()
                 .tableName(tableName);
         final SqlDDLParser.Create_table_definitionContext tableContextDefinition = context.create_table_definition();
-        final Map<String, ColumnDefinition> columns = new HashMap<>();
+        final Map<String, DDLColumnDefinition> columns = new HashMap<>();
         tableContextDefinition.table_element().stream().forEach(
                 (SqlDDLParser.Table_elementContext tableElement) -> {
                     final SqlDDLParser.Column_elementContext column = tableElement.column_element();
@@ -52,7 +56,7 @@ public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
                     final String columnDataType = column.column_datatype().getText();
                     final boolean isNullable = !column.column_constraint().contains("notnull");
                     final boolean isPrimary = !column.column_constraint().contains("primarykey");
-                    final ColumnDefinition columnDefinition = ColumnDefinition.builder()
+                    final DDLColumnDefinition columnDefinition = DDLColumnDefinition.builder()
                             .columnName(columnName)
                             .dataType(columnDataType)
                             .nullable(isNullable)
@@ -63,7 +67,8 @@ public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
 
                 });
         tableDefinitionBuilder.columns(columns);
-        final TableDefinition tableDefinition = tableDefinitionBuilder.build();
+        final DDLTableDefinition tableDefinition = tableDefinitionBuilder.build();
+        schemaDefinition.put(tableDefinition.getTableName(), tableDefinition);
 
         log.info(">" + tableDefinition.toString() + "<");
 
