@@ -4,6 +4,7 @@
     <groupId>com.github.huluvu424242</groupId>
     <artifactId>java-compiler-template</artifactId>
     <version>1-SNAPSHOT</version>
+    <inceptionYear>2023</inceptionYear>
 
     <properties>
         <!-- fuer wiederholbare builds mit versioniert -->
@@ -14,7 +15,7 @@
     </properties>
 
     <dependencyManagement>
-       <!-- set versions of transitive deps -->
+        <!-- set versions of transitive deps -->
     </dependencyManagement>
 
     <dependencies>
@@ -171,23 +172,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.antlr</groupId>
-                <artifactId>antlr4-maven-plugin</artifactId>
-                <configuration>
-                    <outputDirectory>
-                        ${antlr4.outputdir}
-                    </outputDirectory>
-                    <visitor>true</visitor>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>antlr4</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
@@ -205,8 +189,79 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <licenseFile>LICENSE</licenseFile>
+                    <licenseName>mit</licenseName>
+                    <useMissingFile>true</useMissingFile>
+                    <excludedLicenses>
+                        <excludedLicense>GNU General Public License (GPL) 1.0</excludedLicense>
+                        <excludedLicense>GNU General Public License (GPL) 2.0</excludedLicense>
+                        <excludedLicense>GNU General Public License (GPL) 3.0</excludedLicense>
+                    </excludedLicenses>
+                    <failOnBlacklist>true</failOnBlacklist>
+                    <failOnMissing>true</failOnMissing>
+                    <failOnMissingHeader>true</failOnMissingHeader>
+                    <includes>
+                        <include>**/*.java</include>
+                        <include>**/*.properties</include>
+                        <include>**/*.xml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*.png</exclude>
+                        <exclude>**/*.json</exclude>
+                        <exclude>**/empty*.properties</exclude>
+                        <exclude>**/valid*.properties</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-header</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>update-file-header</goal>
+                            <goal>update-project-license</goal>
+                            <goal>add-third-party</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>
+                        ${antlr4.outputdir}
+                    </outputDirectory>
+                    <visitor>true</visitor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
+    <organization>
+        <name>Huluvu424242</name>
+        <url>https://github.com/huluvu424242</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Huluvu424242 (Thomas Schubert)</name>
+            <email>huluvu424242@gmail.com</email>
+            <roles>
+                <role>project owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
 </project>
