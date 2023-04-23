@@ -21,8 +21,13 @@ Template für antlr basierte Compiler in Java
    oder
    mvn wrapper:wrapper -Dtype=script
    ```
-   
 
 ## Grammatik erstellen
 
 * https://tomassetti.me/antlr-mega-tutorial/
+
+
+## Test Live
+
+* Use SQL Fiddle to create valid ddl scripts http://sqlfiddle.com/
+* Compile these scripts with this app to plantuml diagrams

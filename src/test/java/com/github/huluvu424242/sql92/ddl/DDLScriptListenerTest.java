@@ -19,7 +19,14 @@ class DDLScriptListenerTest {
     @Test
     void createOneTable()  {
 
-        final String ddlScriptContent = "CREATE TABLE Mitarbeiter;";
+        final String ddlScriptContent = "create table Mitarbeiter ;";
+//                       """
+//                       create table Mitarbeiter (
+//                           id int not null,
+//                           vorname varchar(200),
+//                           name varchar(2300)
+//                       );
+//                """;
         //
         final Sql92DDLLexer ddlLexer = new Sql92DDLLexer(CharStreams.fromString(ddlScriptContent));
         final CommonTokenStream tokens = new CommonTokenStream(ddlLexer);
