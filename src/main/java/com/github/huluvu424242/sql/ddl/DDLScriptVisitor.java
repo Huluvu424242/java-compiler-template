@@ -17,7 +17,7 @@ public class DDLScriptVisitor extends SqlDDLBaseVisitor<String> {
 
     @Override
     public String visitCreate_table(SqlDDLParser.Create_tableContext context) {
-        System.out.print(context.getText());
+        System.out.print(">" + context.getText() + "<");
 
         return visitChildren(context);
     }
