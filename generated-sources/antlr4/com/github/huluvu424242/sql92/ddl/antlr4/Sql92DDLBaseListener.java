@@ -16,85 +16,49 @@ public class Sql92DDLBaseListener implements Sql92DDLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDdlScript(Sql92DDLParser.DdlScriptContext ctx) { }
+	@Override public void enterParse(Sql92DDLParser.ParseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDdlScript(Sql92DDLParser.DdlScriptContext ctx) { }
+	@Override public void exitParse(Sql92DDLParser.ParseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCreateTable(Sql92DDLParser.CreateTableContext ctx) { }
+	@Override public void enterError(Sql92DDLParser.ErrorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCreateTable(Sql92DDLParser.CreateTableContext ctx) { }
+	@Override public void exitError(Sql92DDLParser.ErrorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCreateTableDefinition(Sql92DDLParser.CreateTableDefinitionContext ctx) { }
+	@Override public void enterDdl_statements(Sql92DDLParser.Ddl_statementsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCreateTableDefinition(Sql92DDLParser.CreateTableDefinitionContext ctx) { }
+	@Override public void exitDdl_statements(Sql92DDLParser.Ddl_statementsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCreateTableKeywords(Sql92DDLParser.CreateTableKeywordsContext ctx) { }
+	@Override public void enterCreate_table(Sql92DDLParser.Create_tableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCreateTableKeywords(Sql92DDLParser.CreateTableKeywordsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTableElement(Sql92DDLParser.TableElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTableElement(Sql92DDLParser.TableElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterColumnElement(Sql92DDLParser.ColumnElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitColumnElement(Sql92DDLParser.ColumnElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTableConstraint(Sql92DDLParser.TableConstraintContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTableConstraint(Sql92DDLParser.TableConstraintContext ctx) { }
+	@Override public void exitCreate_table(Sql92DDLParser.Create_tableContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

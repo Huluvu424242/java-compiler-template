@@ -17,21 +17,21 @@ class DDLScriptListenerTest {
     protected final ParseTreeWalker walker = new ParseTreeWalker();
 
     @Test
-    void createOneTable() throws Exception {
+    void createOneTable()  {
 
-        final String ddlScriptContent = "create table Mitarbeiter ( id)";
+        final String ddlScriptContent = "CREATE TABLE Mitarbeiter;";
         //
         final Sql92DDLLexer ddlLexer = new Sql92DDLLexer(CharStreams.fromString(ddlScriptContent));
         final CommonTokenStream tokens = new CommonTokenStream(ddlLexer);
         final Sql92DDLParser parser = new Sql92DDLParser(tokens);
-        final ParseTree tree = parser.ddlScript();
+        final ParseTree tree = parser.parse();
 
         // instantiate the lexer, the parser, and the walker
         final DDLScriptListener listener = new DDLScriptListener();
         walker.walk(listener, tree);
         final Map<String, TableDefinition> ddlObjects = listener.getDDLObjectMap();
 
-        assertEquals(3, ddlObjects.size());
-        assertEquals("Hallo", ddlObjects.keySet().stream().findFirst().orElseThrow(() -> new RuntimeException("Falsch")));
+        assertEquals(1, ddlObjects.size());
+        assertEquals("Mitarbeiter", ddlObjects.keySet().stream().findFirst().orElseThrow(() -> new RuntimeException("Falsch")));
     }
 }
