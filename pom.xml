@@ -7,11 +7,16 @@
     <inceptionYear>2023</inceptionYear>
 
     <properties>
+        <sonar.organization>huluvu424242</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.version>3.9.1</maven.version>
         <!-- fuer wiederholbare builds mit versioniert -->
         <antlr4.outputdir>generated-sources/antlr4</antlr4.outputdir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <maven.version>3.9.1</maven.version>
+        <jvm.arg.addOpens/>
+        <junit-excluded-groups/>
+        <surefireArgLine/>
     </properties>
 
     <dependencyManagement>
@@ -210,11 +215,11 @@
                     </excludedLicenses>
                     <failOnBlacklist>true</failOnBlacklist>
                     <failOnMissing>true</failOnMissing>
-                    <failOnMissingHeader>true</failOnMissingHeader>
                     <includes>
                         <include>**/*.java</include>
                         <include>**/*.properties</include>
                         <include>**/*.xml</include>
+                        <include>**/*.g4</include>
                     </includes>
                     <excludes>
                         <exclude>**/*.png</exclude>
@@ -251,6 +256,55 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Use custom report descriptor -->
+                    <reportDescriptor>etc/clover-report.xml</reportDescriptor>
+                    <outputDirectory>${basedir}/docs/clover/</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <forkCount>10</forkCount>
+                    <argLine>${jvm.arg.addOpens} ${surefireArgLine}</argLine>
+                    <excludedGroups>
+                        ${junit-excluded-groups}
+                    </excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.github.funthomas424242.jenkinsmonitor.JenkinsMonitor</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <configuration>
+                    <generatePom>false</generatePom>
+                </configuration>
             </plugin>
         </plugins>
     </build>
