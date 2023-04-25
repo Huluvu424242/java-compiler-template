@@ -32,12 +32,7 @@ interface States {
     }
 }
 
-public class PlantumlEntityDiagramBuilder implements States {
-
-//    public PlantumlEntityDiagramBuilder self() {
-//        return this;
-//    }
-
+public class PlantumlEntityDiagramBuilder implements States.NewState {
 
     /**
      * default constructor for build new instances
