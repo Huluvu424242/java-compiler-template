@@ -16,7 +16,9 @@ class PlantumlEntityDiagramBuilderTest {
                 .createEntity("Mitarbeiter")
                 .build();
         assertEquals("""
-                                
+                @startuml
+                           
+                entity Mitarbeiter{
                 """, plantumlEntityDiagram);
     }
 
