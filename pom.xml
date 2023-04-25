@@ -302,7 +302,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.funthomas424242.jenkinsmonitor.JenkinsMonitor</mainClass>
+                            <mainClass>com.github.huluvu424242.sql.ddl.SqlDDL2PlantumlCompiler</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
