@@ -26,8 +26,11 @@ package com.github.huluvu424242.sql.ddl;
  * #L%
  */
 
+import com.github.huluvu424242.plantuml.BuilderStates.ColumnTypeState;
+import com.github.huluvu424242.plantuml.BuilderStates.EntityState;
+import com.github.huluvu424242.plantuml.BuilderStates.UmlStartState;
 import com.github.huluvu424242.plantuml.PlantumlEntityDiagramBuilder;
-import com.github.huluvu424242.plantuml.BuilderStates;
+import com.github.huluvu424242.sql.ddl.Entity.EntityBuilder;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
@@ -37,31 +40,34 @@ import java.util.Map;
 
 @Data
 @Builder
-class ColumnSpec {
+class Entity {
+
+    protected String name;
+
+    @Singular
+    protected List<Column> columns;
+
+}
+
+@Data
+@Builder
+class Column {
     protected final String colName;
     protected final String colType;
     protected final Boolean mandatory;
     protected final String colNotes;
 }
 
-@Data
-@Builder
-class Entity {
-
-    protected String name;
-
-    @Singular
-    protected List<ColumnSpec> columns;
-
-}
-
-class LambdaStateHolder {
-    BuilderStates.EntityState entityState;
-    BuilderStates.UmlStartState umlStartState;
-}
 
 @Builder
 public class DDLModel {
+
+
+    static class LambdaStateHolder {
+        EntityState entityState;
+        UmlStartState umlStartState;
+    }
+
 
     @Singular
     protected List<Entity> entities;
@@ -74,7 +80,7 @@ public class DDLModel {
                 .values()
                 .stream()
                 .map(tableDefinition -> {
-                    final Entity.EntityBuilder entityBuilder = Entity
+                    final EntityBuilder entityBuilder = Entity
                             .builder()
                             .name(tableDefinition.getTableName());
                     // Spalten auswerten und ans entity anhängen
@@ -82,7 +88,7 @@ public class DDLModel {
                             .getColumns()
                             .values()
                             .stream()
-                            .map((DDLColumnDefinition colDef) -> ColumnSpec
+                            .map((DDLColumnDefinition colDef) -> Column
                                     .builder()
                                     .colName(colDef.getColumnName())
                                     .colType(colDef.getDataType())
@@ -98,12 +104,12 @@ public class DDLModel {
     }
 
 
-    protected BuilderStates.UmlStartState getColumnDefinitionen(final BuilderStates.EntityState state, final List<ColumnSpec> columns) {
+    protected UmlStartState getColumnDefinitionen(final EntityState state, final List<Column> columns) {
 
         final LambdaStateHolder stateHolder = new LambdaStateHolder();
 
-        columns.forEach((ColumnSpec colSpec) -> {
-            final BuilderStates.ColumnTypeState typeState;
+        columns.forEach((Column colSpec) -> {
+            final ColumnTypeState typeState;
             if (Boolean.TRUE.equals(colSpec.getMandatory())) {
                 typeState = state.createColumnMandatory(colSpec.getColName());
             } else {
@@ -123,7 +129,8 @@ public class DDLModel {
                 .builder()
                 .createUmlHeader();
         entities.forEach((Entity entity) -> {
-            stateHolder.umlStartState = getColumnDefinitionen(stateHolder.umlStartState.createEntity(entity.getName()), entity.getColumns());
+            final UmlStartState startState = stateHolder.umlStartState;
+            stateHolder.umlStartState = getColumnDefinitionen(startState.createEntity(entity.getName()), entity.getColumns());
         });
         return stateHolder.umlStartState
                 .createUmlFooter()
