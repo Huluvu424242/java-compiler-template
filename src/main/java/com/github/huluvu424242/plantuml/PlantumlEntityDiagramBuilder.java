@@ -67,9 +67,10 @@ interface States {
             builder.append(String.format("\nentity %s{", name));
             return this::getId;
         }
+
         default BuildState createUmlFooter() {
             final StringBuilder builder = States.getBuilder(getId());
-            builder.append("\n@enduml\n");
+            builder.append("\n@enduml");
             return this::getId;
         }
     }
@@ -80,11 +81,13 @@ interface States {
             builder.append(String.format("\n* %s ", columnName));
             return this::getId;
         }
+
         default ColumnTypeState createColumnNullable(final String columnName) {
             final StringBuilder builder = States.getBuilder(getId());
             builder.append(String.format("\n  %s ", columnName));
             return this::getId;
         }
+
         default UmlStartState next() {
             final StringBuilder builder = States.getBuilder(getId());
             builder.append("\n}");
@@ -94,16 +97,18 @@ interface States {
 
     interface ColumnTypeState extends States {
         default ColumnNotesState columnType(final String columnTypeSpec) {
-            final StringBuilder builder= States.getBuilder(getId());
-            builder.append(String.format(" %s ", columnTypeSpec));
+            final StringBuilder builder = States.getBuilder(getId());
+            builder.append(String.format(" %s", columnTypeSpec));
             return this::getId;
         }
     }
 
     interface ColumnNotesState extends States {
         default EntityState columnNotes(final String columnNotes) {
-            final StringBuilder builder= States.getBuilder(getId());
-            builder.append(String.format(" %s", columnNotes));
+            if (columnNotes != null && columnNotes.trim().length() > 0) {
+                final StringBuilder builder = States.getBuilder(getId());
+                builder.append(String.format(" %s", columnNotes));
+            }
             return this::getId;
         }
     }

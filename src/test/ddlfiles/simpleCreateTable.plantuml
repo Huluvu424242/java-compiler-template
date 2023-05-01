@@ -1,14 +1,13 @@
 @startuml
-
 entity Abteilung{
-   description varchar(2300)
- * id int <<PK>>
-   dep_name varchar(200)
+  description  varchar(2300)
+* id  int <<PK>>
+  dep_name  varchar(200)
 }
 entity Mitarbeiter{
-   dep_id int
-   vorname varchar(200)
-   name varchar(2300)
- * id int <<PK>>
+  dep_id  int
+  vorname  varchar(200)
+  name  varchar(2300)
+* id  int <<PK>>
 }
 @enduml

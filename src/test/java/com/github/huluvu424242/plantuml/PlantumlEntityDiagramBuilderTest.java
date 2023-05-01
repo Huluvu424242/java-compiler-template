@@ -49,10 +49,9 @@ class PlantumlEntityDiagramBuilderTest {
         assertEquals("""
                 @startuml
                 entity Mitarbeiter{
-                  id  varchar2(2000)  <<PK>>
+                  id  varchar2(2000) <<PK>>
                 }
-                @enduml
-                """, plantumlEntityDiagram);
+                @enduml""", plantumlEntityDiagram);
     }
 
 }
