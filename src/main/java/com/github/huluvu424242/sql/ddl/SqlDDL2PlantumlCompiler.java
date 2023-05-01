@@ -1,6 +1,6 @@
 package com.github.huluvu424242.sql.ddl;
 
-import com.github.huluvu424242.plantuml.PlantumlDiagram;
+import com.github.huluvu424242.plantuml.EntityModel;
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLLexer;
 import com.github.huluvu424242.sql.ddl.antlr4.SqlDDLParser;
 import lombok.Builder;
@@ -71,7 +71,7 @@ public class SqlDDL2PlantumlCompiler implements Runnable {
         final DDLScriptVisitor visitor = new DDLScriptVisitor();
         visitor.visit(fileContext);
         final Map<String, DDLTableDefinition> schemaDefinition = visitor.getSchemaDefinition();
-        final String plantumlContent = PlantumlDiagram.of(schemaDefinition);
+        final String plantumlContent = EntityModel.of(schemaDefinition);
         FileUtils.writeStringToFile(targetPlantumlFile, plantumlContent, StandardCharsets.UTF_8);
     }
 
