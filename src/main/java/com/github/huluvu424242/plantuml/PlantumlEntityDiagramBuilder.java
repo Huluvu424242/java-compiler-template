@@ -12,10 +12,10 @@ package com.github.huluvu424242.plantuml;
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,28 +54,55 @@ interface States {
 
     interface NewState extends States {
 
-        default UmlState createUmlHeader() {
+        default UmlStartState createUmlHeader() {
             final StringBuilder builder = States.getBuilder(getId());
-            builder.append("@startuml\n");
+            builder.append("@startuml");
             return this::getId;
         }
     }
 
-    interface UmlState extends States {
+    interface UmlStartState extends States {
         default EntityState createEntity(final String name) {
             final StringBuilder builder = States.getBuilder(getId());
-            builder.append(String.format("\nentity %s{\n", name));
+            builder.append(String.format("\nentity %s{", name));
+            return this::getId;
+        }
+        default BuildState createUmlFooter() {
+            final StringBuilder builder = States.getBuilder(getId());
+            builder.append("\n@enduml\n");
             return this::getId;
         }
     }
 
     interface EntityState extends States {
-        default BuildState addColumn() {
+        default ColumnTypeState createColumn(final String columnName) {
             final StringBuilder builder = States.getBuilder(getId());
-            builder.append(String.format("colDef %s{\n", "col"));
+            builder.append(String.format("\n %s ", columnName));
+            return this::getId;
+        }
+        default UmlStartState next() {
+            final StringBuilder builder = States.getBuilder(getId());
+            builder.append("\n}");
             return this::getId;
         }
     }
+
+    interface ColumnTypeState extends States {
+        default ColumnNotesState columnType(final String columnTypeSpec) {
+            final StringBuilder builder= States.getBuilder(getId());
+            builder.append(String.format(" %s ", columnTypeSpec));
+            return this::getId;
+        }
+    }
+
+    interface ColumnNotesState extends States {
+        default EntityState columnNotes(final String columnNotes) {
+            final StringBuilder builder= States.getBuilder(getId());
+            builder.append(String.format(" %s", columnNotes));
+            return this::getId;
+        }
+    }
+
 
     interface BuildState extends States {
         default String build() {
