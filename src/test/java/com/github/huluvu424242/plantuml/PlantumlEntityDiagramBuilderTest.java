@@ -34,13 +34,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PlantumlEntityDiagramBuilderTest {
 
     @Test
-    @DisplayName("simple entity model with relation ship")
+    @DisplayName("ddl model with single entity with one primary key column")
     void createSimpleModelWithRelation() {
         final String plantumlEntityDiagram = PlantumlEntityDiagramBuilder
                 .builder()
                 .createUmlHeader()
                 .createEntity("Mitarbeiter")
-                .createColumnNullable("id")
+                .createColumnMandatory("id")
                 .columnType("varchar2(2000)")
                 .columnNotes("<<PK>>")
                 .next()
@@ -49,7 +49,7 @@ class PlantumlEntityDiagramBuilderTest {
         assertEquals("""
                 @startuml
                 entity Mitarbeiter{
-                  id  varchar2(2000) <<PK>>
+                * id  varchar2(2000) <<PK>>
                 }
                 @enduml""", plantumlEntityDiagram);
     }
