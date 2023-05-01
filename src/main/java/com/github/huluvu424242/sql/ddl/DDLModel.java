@@ -1,4 +1,4 @@
-package com.github.huluvu424242.plantuml;
+package com.github.huluvu424242.sql.ddl;
 
 /*-
  * #%L
@@ -26,13 +26,12 @@ package com.github.huluvu424242.plantuml;
  * #L%
  */
 
-import com.github.huluvu424242.sql.ddl.DDLColumnDefinition;
-import com.github.huluvu424242.sql.ddl.DDLTableDefinition;
+import com.github.huluvu424242.plantuml.PlantumlEntityDiagramBuilder;
+import com.github.huluvu424242.plantuml.BuilderStates;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -57,18 +56,18 @@ class Entity {
 }
 
 class StateHolder {
-    States.EntityState entityState;
-    States.UmlStartState umlStartState;
+    BuilderStates.EntityState entityState;
+    BuilderStates.UmlStartState umlStartState;
 }
 
 @Builder
-public class EntityModel {
+public class DDLModel {
 
     @Singular
-    protected List<Entity> entities = new ArrayList<>();
+    protected List<Entity> entities;
 
     public static String of(final Map<String, DDLTableDefinition> schemaDefinition) {
-        final EntityModel.EntityModelBuilder diagramBuilder = EntityModel
+        final DDLModel.DDLModelBuilder diagramBuilder = DDLModel
                 .builder();
 
         schemaDefinition
@@ -101,12 +100,12 @@ public class EntityModel {
     }
 
 
-    protected States.UmlStartState getColumnDefinitionen(final States.EntityState state, final List<ColumnSpec> columns) {
+    protected BuilderStates.UmlStartState getColumnDefinitionen(final BuilderStates.EntityState state, final List<ColumnSpec> columns) {
 
         final StateHolder stateHolder = new StateHolder();
 
         columns.stream().forEach((ColumnSpec colSpec) -> {
-            final States.ColumnTypeState typeState;
+            final BuilderStates.ColumnTypeState typeState;
             if (Boolean.TRUE.equals(colSpec.getMandatory())) {
                 typeState = state.createColumnMandatory(colSpec.getColName());
             } else {
