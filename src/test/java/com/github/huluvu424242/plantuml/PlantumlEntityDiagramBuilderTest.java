@@ -40,7 +40,7 @@ class PlantumlEntityDiagramBuilderTest {
                 .builder()
                 .createUmlHeader()
                 .createEntity("Mitarbeiter")
-                .createColumn("id")
+                .createColumnNullable("id")
                 .columnType("varchar2(2000)")
                 .columnNotes("<<PK>>")
                 .next()
@@ -49,7 +49,7 @@ class PlantumlEntityDiagramBuilderTest {
         assertEquals("""
                 @startuml
                 entity Mitarbeiter{
-                 id  varchar2(2000)  <<PK>>
+                  id  varchar2(2000)  <<PK>>
                 }
                 @enduml
                 """, plantumlEntityDiagram);

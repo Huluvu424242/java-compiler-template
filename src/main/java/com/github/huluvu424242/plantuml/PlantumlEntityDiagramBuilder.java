@@ -75,9 +75,14 @@ interface States {
     }
 
     interface EntityState extends States {
-        default ColumnTypeState createColumn(final String columnName) {
+        default ColumnTypeState createColumnMandatory(final String columnName) {
             final StringBuilder builder = States.getBuilder(getId());
-            builder.append(String.format("\n %s ", columnName));
+            builder.append(String.format("\n* %s ", columnName));
+            return this::getId;
+        }
+        default ColumnTypeState createColumnNullable(final String columnName) {
+            final StringBuilder builder = States.getBuilder(getId());
+            builder.append(String.format("\n  %s ", columnName));
             return this::getId;
         }
         default UmlStartState next() {
