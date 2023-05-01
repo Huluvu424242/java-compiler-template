@@ -120,4 +120,14 @@ public interface BuilderStates {
         }
     }
 
+    final class LambdaStateHolder {
+        public NewState newState;
+        public UmlStartState umlStartState;
+        public EntityState entityState;
+        public ColumnTypeState columnTypeState;
+        public ColumnNotesState columnNotesState;
+    }
+
 }
+
+

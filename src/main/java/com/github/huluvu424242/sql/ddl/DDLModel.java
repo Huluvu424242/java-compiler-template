@@ -26,8 +26,10 @@ package com.github.huluvu424242.sql.ddl;
  * #L%
  */
 
+import com.github.huluvu424242.plantuml.BuilderStates;
 import com.github.huluvu424242.plantuml.BuilderStates.ColumnTypeState;
 import com.github.huluvu424242.plantuml.BuilderStates.EntityState;
+import com.github.huluvu424242.plantuml.BuilderStates.LambdaStateHolder;
 import com.github.huluvu424242.plantuml.BuilderStates.UmlStartState;
 import com.github.huluvu424242.plantuml.PlantumlEntityDiagramBuilder;
 import com.github.huluvu424242.sql.ddl.Entity.EntityBuilder;
@@ -61,12 +63,6 @@ class Column {
 
 @Builder
 public class DDLModel {
-
-
-    static class LambdaStateHolder {
-        EntityState entityState;
-        UmlStartState umlStartState;
-    }
 
 
     @Singular
