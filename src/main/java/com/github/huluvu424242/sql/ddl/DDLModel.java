@@ -55,7 +55,7 @@ class Entity {
 
 }
 
-class StateHolder {
+class LambdaStateHolder {
     BuilderStates.EntityState entityState;
     BuilderStates.UmlStartState umlStartState;
 }
@@ -71,11 +71,9 @@ public class DDLModel {
                 .builder();
 
         schemaDefinition
-                .entrySet()
+                .values()
                 .stream()
-                .map((Map.Entry<String, DDLTableDefinition> entry) -> {
-                    final DDLTableDefinition tableDefinition = entry.getValue();
-
+                .map(tableDefinition -> {
                     final Entity.EntityBuilder entityBuilder = Entity
                             .builder()
                             .name(tableDefinition.getTableName());
@@ -102,9 +100,9 @@ public class DDLModel {
 
     protected BuilderStates.UmlStartState getColumnDefinitionen(final BuilderStates.EntityState state, final List<ColumnSpec> columns) {
 
-        final StateHolder stateHolder = new StateHolder();
+        final LambdaStateHolder stateHolder = new LambdaStateHolder();
 
-        columns.stream().forEach((ColumnSpec colSpec) -> {
+        columns.forEach((ColumnSpec colSpec) -> {
             final BuilderStates.ColumnTypeState typeState;
             if (Boolean.TRUE.equals(colSpec.getMandatory())) {
                 typeState = state.createColumnMandatory(colSpec.getColName());
@@ -120,7 +118,7 @@ public class DDLModel {
 
     @Override
     public String toString() {
-        final StateHolder stateHolder = new StateHolder();
+        final LambdaStateHolder stateHolder = new LambdaStateHolder();
         stateHolder.umlStartState = PlantumlEntityDiagramBuilder
                 .builder()
                 .createUmlHeader();
