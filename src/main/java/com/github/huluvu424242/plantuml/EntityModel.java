@@ -53,6 +53,11 @@ class Entity {
 
 }
 
+class StateHolder {
+    States.EntityState entityState;
+    States.UmlStartState umlStartState;
+}
+
 @Builder
 public class EntityModel {
 
@@ -60,48 +65,36 @@ public class EntityModel {
     protected List<Entity> entities = new ArrayList<>();
 
 
-    protected String getColumnDefinitionen(final List<ColumnSpec> columns) {
-        final StringBuilder builder = new StringBuilder();
-        columns.stream()
-                .map((ColumnSpec colSpec) -> {
-                    final StringBuilder sb = new StringBuilder();
-                    if (Boolean.TRUE.equals(colSpec.getMandatory())) {
-                        sb.append(" *");
-                    } else {
-                        sb.append("  ");
-                    }
-                    final String colName = colSpec.getColName();
-                    if(colName!=null&& colName.trim().length()>0){
-                        sb.append(" ").append(colName);
-                    }
-                    final String colType = colSpec.getColType();
-                    if(colType!=null && colType.trim().length()>0){
-                        sb.append(" ").append(colType);
-                    }
-                    final String colNotes = colSpec.getColNotes();
-                    if(colNotes!=null && colNotes.trim().length()>0){
-                        sb.append(" ").append(colNotes);
-                    }
-                    sb.append("\n");
-                    return sb.toString();
-                })
-//                .map(String::trim)
-                .forEach(builder::append);
+    protected States.UmlStartState getColumnDefinitionen(final States.EntityState state, final List<ColumnSpec> columns) {
 
+        final StateHolder stateHolder = new StateHolder();
 
-        return builder.toString();
+        columns.stream().forEach((ColumnSpec colSpec) -> {
+            final States.ColumnTypeState typeState;
+            if (Boolean.TRUE.equals(colSpec.getMandatory())) {
+                typeState = state.createColumnMandatory(colSpec.getColName());
+            } else {
+                typeState = state.createColumnNullable(colSpec.getColName());
+            }
+            stateHolder.entityState = typeState
+                    .columnType(colSpec.getColType())
+                    .columnNotes(colSpec.getColNotes());
+        });
+        return stateHolder.entityState.next();
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("@startuml\n");
+        final StateHolder stateHolder = new StateHolder();
+        stateHolder.umlStartState = PlantumlEntityDiagramBuilder
+                .builder()
+                .createUmlHeader();
         entities.forEach((Entity entity) -> {
-            builder.append(String.format("\nentity %s{\n%s}", entity.getName(), getColumnDefinitionen(entity.getColumns())));
+            stateHolder.umlStartState = getColumnDefinitionen(stateHolder.umlStartState.createEntity(entity.getName()), entity.getColumns());
         });
-
-        builder.append("\n@enduml\n");
-        return builder.toString();
+        return stateHolder.umlStartState
+                .createUmlFooter()
+                .build();
     }
 
 }
